@@ -1,17 +1,17 @@
-import {Link, usePage} from '@inertiajs/react';
-import {PropsWithChildren} from 'react';
+import { Link, usePage } from '@inertiajs/react';
+import { PropsWithChildren } from 'react';
 import ApplicationLogo from "@/components/ApplicationLogo";
 
-export default function AuthLayout({children, pageHeading}: PropsWithChildren & { pageHeading?: string }) {
-    const {config} = usePage().props
-    const {app} = config
+export default function AuthLayout({ children, pageHeading }: PropsWithChildren & { pageHeading?: string }) {
+    const { config } = usePage().props
+    const { app } = config
 
     return (
         <div
             className="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0 min-w-screen">
             <div className="flex flex-col items-center justify-center min-w-full gap-4">
                 <div className='flex items-center gap-2'>
-                    <ApplicationLogo className="w-20 h-20 text-gray-500 fill-current"/>
+                    <ApplicationLogo className="w-20 h-20 text-gray-500 fill-current" />
                     <div>
                         <Link as='h1' href='/' className="text-3xl font-extrabold text-green-500 cursor-pointer">
                             {app?.name}
