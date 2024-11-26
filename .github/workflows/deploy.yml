@@ -1,0 +1,56 @@
+name: Auto deploy to production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check out code to repository
+        uses: actions/checkout@v3
+
+      - name: Setup php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Install composer dependencies
+        run: composer install --optimize-autoloader --no-progress --no-interaction --prefer-dist
+
+      - name: Install node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Build js assets
+        run: npm run build
+
+      - name: Synchronize file to server
+        uses: easingthemes/ssh-deploy@v2.1.5
+        with:
+          REMOTE_HOST: ${{secrets.SSH_HOST}}
+          REMOTE_USER: ${{secrets.SSH_USER}}
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SOURCE: '.'
+          TARGET: ${{secrets.PROJECT_PATH}}
+
+      - name: Run Remote/Artisan command
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          script: |
+            cd ${{secrets.PROJECT_PATH}}
+            php artisan migrate --force
+            php artisan optimize
+            sudo chown -R www-data:www-data ./storage
+            sudo chown -R www-data:www-data ./bootstrap/cache
+            sudo chown -R $USER:www-data ./storage

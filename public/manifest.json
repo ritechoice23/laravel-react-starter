@@ -1,0 +1,65 @@
+{
+    "name": "9jspace",
+    "short_name": "9jspace",
+    "start_url": "/home",
+    "display": "standalone",
+    "description": "Catch all 9ja gist from one place.",
+    "lang": "en",
+    "dir": "auto",
+    "theme_color": "#2563eb",
+    "background_color": "#2563eb",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "https://9jaspace.com/assets/images/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "https://9jaspace.com/assets/images/logo.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "https://9jaspace.com/images/zs-home-shot.png",
+            "sizes": "2880x1800",
+            "type": "image/png",
+            "description": "Catch all 9ja gist from one place."
+        }
+    ],
+    "related_applications": [
+        {
+            "platform": "windows",
+            "url": " The URL to your app in that app store"
+        }
+    ],
+    "prefer_related_applications": false,
+    "shortcuts": [
+        {
+            "name": "The name you would like to be displayed for your shortcut",
+            "url": "The url you would like to open when the user chooses this shortcut. This must be a URL local to your PWA. For example: If my start_url is /, this URL must be something like /shortcut",
+            "description": "A description of the functionality of this shortcut"
+        }
+    ],
+    "categories": [
+        "business",
+        "education",
+        "entertainment",
+        "lifestyle",
+        "music",
+        "navigation",
+        "news",
+        "personalization",
+        "productivity",
+        "social",
+        "nigerian",
+        "naija",
+        "9ja",
+        "social",
+        "nigeria"
+    ]
+}
